@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de QI Officiel 2024 - Institut Français des Hauts Potentiels</title>
+    
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 600px; margin: 50px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-top: 8px solid #2563eb; }
+        h1 { color: #1e40af; text-align: center; font-size: 24px; }
+        .intro { font-style: italic; color: #666; text-align: center; border-bottom: 1px solid #ddd; padding-bottom: 20px; }
+        .question { margin: 25px 0; display: none; }
+        .question.active { display: block; }
+        label { display: block; margin: 10px 0; padding: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+        label:hover { background: #e0e7ff; }
+        input[type="radio"] { margin-right: 10px; }
+        button { width: 100%; background: #2563eb; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 20px; }
+        button:hover { background: #1d4ed8; }
+        #resultat { display: none; text-align: center; }
+        .score { font-size: 48px; font-weight: bold; color: #dc2626; margin: 20px 0; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="quiz">
+        <h1>📊 Test de Quotient Intellectuel Rapide</h1>
+        <p class="intro">Ce test de 3 questions est validé par des experts pour estimer vos capacités cognitives en moins de 2 minutes.</p>
+
+        <div class="question active" id="q1">
+            <p><strong>Question 1:</strong> Si un avion s'écrase exactement sur la frontière entre la France et la Belgique, où enterre-t-on les rescapés ?</p>
+            <label><input type="radio" name="r1"> En France</label>
+            <label><input type="radio" name="r1"> En Belgique</label>
+            <label><input type="radio" name="r1"> On n'enterre pas les rescapés</label>
+            <button onclick="next(1)">Question suivante</button>
+        </div>
+
+        <div class="question" id="q2">
+            <p><strong>Question 2:</strong> Certains mois ont 31 jours, d'autres en ont 30. Combien en ont 28 ?</p>
+            <label><input type="radio" name="r2"> Un seul (Février)</label>
+            <label><input type="radio" name="r2"> Tous les mois</label>
+            <label><input type="radio" name="r2"> Ça dépend si c'est une année bissextile</label>
+            <button onclick="next(2)">Question suivante</button>
+        </div>
+
+        <div class="question" id="q3">
+            <p><strong>Question 3:</strong> Laquelle de ces formes est la plus "ronde" ?</p>
+            <label><input type="radio" name="r3"> Un cercle bleu</label>
+            <label><input type="radio" name="r3"> Un carré qui fait un effort</label>
+            <label><input type="radio" name="r3"> La réponse D</label>
+            <button onclick="showResult()">Calculer mon score</button>
+        </div>
+    </div>
+
+    <div id="resultat">
+        <h1>Analyse terminée</h1>
+        <p>Votre QI estimé est de :</p>
+        <div class="score" id="finalScore">12</div>
+        <p id="commentary">C'est remarquable... un grille-pain ferait mieux, mais on est fiers de vous.</p>
+        <button onclick="location.reload()">Recommencer le test</button>
+    </div>
+</div>
+
+<script>
+    function next(current) {
+        document.getElementById('q' + current).classList.remove('active');
+        document.getElementById('q' + (current + 1)).classList.add('active');
+    }
+
+    function showResult() {
+        document.getElementById('quiz').style.display = 'none';
+        document.getElementById('resultat').style.display = 'block';
+        
+        // Génère un score ridicule entre 10 et 45
+        const score = Math.floor(Math.random() * 35) + 10;
+        document.getElementById('finalScore').innerText = score;
+    }
+</script>
+
+</body>
+</html>
